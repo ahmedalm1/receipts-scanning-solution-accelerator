@@ -1,7 +1,9 @@
 # Smart Receipts Scanning for Reward Programs Solution Accelerator
 
 ## About this accelerator
-TODO
+The Smart Receipts Scanning for Reward Programs Solution Accelerator is an easy-to-deploy solution, that creates an automated process of scanning receipts, extracts insights and information, approves or rejects receipts based on business rules, and consumes the outcome in one wholistic report.
+
+The solution aims to accelerate information extraction using the pre-built receipt model in Form Recognizer. It applies intelligent business rules to check the eligibility of a receipt based on pre-defined criteria. It can be considered as a complete and automated end-to-end solution that leverages the power of Logic Apps, and creates a summarized view with a Power BI Report to consume the extracted insights.
 
 ### Business Use Case 
 Reward Programs are a proven marketing strategy, designed to encourage customers of a business, to continue using their services and buying their goods. One way of achieving such results is by analyzing purchase receipts and rewarding the customer with redeemable points during a campaign period. 
@@ -27,7 +29,11 @@ Using the pre-built receipts model in Form Recognizer, we can extract the follow
 - Line-items (name, quantity, price) 
 
 ### Business Rules 
-TODO
+There are four, customizable business rules currently supported in this solution accelerator, that approves or rejects a receipt, which are:
+- Brand Eligibility -- checks the Brand Name and qualifies the receipt if accepted or not.
+- Campaign Period -- checks the Transaction Date and qualifies the receipt if accepted or not.
+- Points Earned -- checks the Total Spent and rewards the user with points if the receipt is accepted.
+- Confidence Score -- checks the Confidence Score and qualifies the receipt if accepted or not. 
 
 ### Deployment 
 TODO
