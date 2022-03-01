@@ -51,7 +51,7 @@ There are four, customizable business rules currently supported in this solution
 
 You can also deploy the required resources using this ARM template:
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fahmedalm1%2Freceipts-scanning-solution-accelerator%2Fmain%2Ftemplate.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fahmedalm1%2Freceipts-scanning-solution-accelerator%2Fmain%2Ftemplate.json) 
 
 ##### Step 2: Setting up the Logic App
 1. Create a blank Logic App. 
