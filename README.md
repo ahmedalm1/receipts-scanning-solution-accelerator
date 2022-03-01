@@ -36,7 +36,67 @@ There are four, customizable business rules currently supported in this solution
 - Confidence Score -- checks the Confidence Score and qualifies the receipt if accepted or not. 
 
 ### Deployment 
-TODO
+#### Pre-requisites
+- Azure Subscription
+- Sample Receipts 
+
+#### Steps
+##### Step 1: Setting up the environment
+1. Creat a new Resource Group in your Azure Subscription and provision the followng resources:
+- Storage Account
+- Logic App
+- Form Recognizer 
+
+![image](https://user-images.githubusercontent.com/88718044/150129298-2143e27a-0733-4eea-90fc-505f8fbddda4.png)
+
+You can also deploy the required resources using this ARM template [TO-DO]:
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/)
+
+### Step 2: Setting up the Logic App
+1. Create a blank Logic App. 
+
+![image](https://user-images.githubusercontent.com/88718044/150130109-4f7051fa-f14d-4bcf-ae76-e3832187fa19.png)
+
+2. Search for "Azure Blob Storage" and select "When a blob is added or modified" trigger. 
+
+![image](https://user-images.githubusercontent.com/88718044/150131381-14d8cd63-2f33-4d5d-bcc2-9baf97bcdc0f.png)
+
+3. You will be required to create a connection to the storage account. Fill in the information and click on Create to proceed. 
+
+![image](https://user-images.githubusercontent.com/88718044/150132267-337aa540-f7ec-46f4-8a96-ffdd5d87d669.png)
+
+4. You will be required to select a container in the storage account to monitor. Fill in the information and click on New step to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150132720-81ded702-b031-49fd-a569-ccd55b44dcc7.png)
+
+5.From the "Azure Blob Storage" list of actions, select "Get blob content". 
+
+![image](https://user-images.githubusercontent.com/88718044/150133252-07650a5a-cedd-42d8-894a-e60ec339b183.png)
+
+6. Fill in the information and click on New step to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150160238-3158d125-d525-48e7-afa3-748c2aa8d400.png)
+
+7. Search for "Form Recognizer" and select "Analyze Receipt" from the list of actions.
+
+![image](https://user-images.githubusercontent.com/88718044/150135090-fcfbb294-cae9-471b-b903-7b146aaa82e5.png)
+
+8. You will be required to create a connection to Form Recognizer. Fill in the information and click on Create to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150135287-5b6d4d44-cad3-4e08-8e34-8fdcb708226d.png)
+
+9. Fill in the information and click on New step to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150135574-e5399848-76d7-4088-aca2-8e99e9fb7406.png)
+
+10. From the "Variables" list of actions, select "Initialize variable".
+
+![image](https://user-images.githubusercontent.com/88718044/150136043-cd2cf53d-d865-4f9b-9617-e491de3cdb50.png)
+
+11. Create an empty array variable that will hold the line items. Fill in the information and click on New step to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150143477-64df897d-d3d7-4333-80e9-e92d240b82a4.png)
 
 ## License
 For all licensing information refer to [LICENSE](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/blob/main/LICENSE).
