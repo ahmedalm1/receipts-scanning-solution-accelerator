@@ -47,7 +47,7 @@ There are four, customizable business rules currently supported in this solution
 - Logic App
 - Form Recognizer 
 
-![image](https://user-images.githubusercontent.com/88718044/150129298-2143e27a-0733-4eea-90fc-505f8fbddda4.png)
+![image](https://user-images.githubusercontent.com/88718044/156177925-6eaf6d0b-a24e-430b-befc-2fd9e571622d.png)
 
 You can also deploy the required resources using this ARM template [TO-DO]:
 
@@ -98,9 +98,45 @@ You can also deploy the required resources using this ARM template [TO-DO]:
 
 ![image](https://user-images.githubusercontent.com/88718044/150143477-64df897d-d3d7-4333-80e9-e92d240b82a4.png)
 
-##### Step 3: Setting up the Logic App
+##### Step 3: Setting up the Logic App - Receipt Information
+1. From the "Data Operations" list of actions, select "Create CSV table".
 
-##### Step 4: Setting up the Logic App
+![image](https://user-images.githubusercontent.com/88718044/150155475-94a9483a-1bf2-4279-8f15-209e9e337540.png)
+
+2. Search for "documentResults" and select it as the input for the CSV table. Select "Custom" for the "Columns" option. 
+
+![image](https://user-images.githubusercontent.com/88718044/156179259-294acb14-2e0e-4ce2-b44e-67a20eb35ab2.png)
+
+3. Fill in the table with the following information:
+Receipt information
+```json
+"brand_name": "<Merchant name field Merchant name>"
+"brand_confidence": "<Merchant name field Confidence>"
+"transaction_date": "<Transaction date field Transaction date>"
+"transaction_confidence": "<Transaction date field Confidence>"
+"total_spent": "<Total field Total>"
+"total_confidence": "<Total field Confidence>"
+```
+![image](https://user-images.githubusercontent.com/88718044/156180084-9daa1a52-bb02-46c9-b1f7-8dd34301f0f0.png)
+
+Business rules
+```json
+"eligible_brand": "<IF merchant_name CONTAINS eligible_brands_list THEN true ELSE false>"
+"campaign_period": "<IF transaction_date CONTAINS campaign_period THEN true ELSE false>"
+"reward_points": "<MUL total BY conversion_rate>"
+"accuracy_flag": "<IF confidence_score LESS THAN threshold THEN true ELSE false>"
+```
+![image](https://user-images.githubusercontent.com/88718044/156180230-fcb5bf8f-f92e-4e28-933d-bf86f7474cd6.png)
+
+4. From the "Azure Blob Storage" list of actions, select "Create blob".
+
+![image](https://user-images.githubusercontent.com/88718044/150155806-680b0be0-7d22-4684-b4df-daafbccd144b.png)
+
+5. Fill in the information. For "Blob name" use a concat function to append ".csv" to the file name for the generated CSV file. For "Blob content", use "Outputs" of the "Create CSV table" action. Save your Logic App to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150156330-7ddb5b02-4eb2-4d5c-a917-3c779c17e706.png)
+
+##### Step 4: Setting up the Logic App - Line-items Information
 1. From the "Control" list of actions, select "For each".
 
 ![image](https://user-images.githubusercontent.com/88718044/150143731-8589d3e0-473f-417f-bd72-b4a87f35d975.png)
