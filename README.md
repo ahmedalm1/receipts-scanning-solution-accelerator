@@ -101,7 +101,7 @@ You can also deploy the required resources using this ARM template [TO-DO]:
 ##### Step 3: Setting up the Logic App - Receipt Information
 1. From the "Data Operations" list of actions, select "Create CSV table".
 
-![image](https://user-images.githubusercontent.com/88718044/150155475-94a9483a-1bf2-4279-8f15-209e9e337540.png)
+![image](https://user-images.githubusercontent.com/88718044/156182793-07b1c740-abb0-4611-b82d-234ed35010ea.png)
 
 2. Search for "documentResults" and select it as the input for the CSV table. Select "Custom" for the "Columns" option. 
 
@@ -186,7 +186,7 @@ Business rules
 
 ![image](https://user-images.githubusercontent.com/88718044/150155806-680b0be0-7d22-4684-b4df-daafbccd144b.png)
 
-11. Fill in the information. For "Blob name" use a concat function to append "-line-items.csv" to the file name for the generated CSV file. For "Blob content", use "Outputs" of the "Create CSV table" action. Save your Logic App to proceed.
+11. Fill in the information. For "Blob name" use a concat function to append "-items.csv" to the file name for the generated CSV file. For "Blob content", use "Outputs" of the "Create CSV table" action. Save your Logic App to proceed.
 
 ![image](https://user-images.githubusercontent.com/88718044/150156330-7ddb5b02-4eb2-4d5c-a917-3c779c17e706.png)
 
@@ -195,12 +195,16 @@ Business rules
 
 ![image](https://user-images.githubusercontent.com/88718044/150158782-5decf1eb-52d7-4b0a-b424-705f6263316f.png)
 
-2. Upload the sample receipt "Receipt.png" to the container in the storage account.
+2. Upload the sample receipt "1000-receipt.jpg" to the container in the storage account.
 
 ![Receipt](https://user-images.githubusercontent.com/88718044/150165816-85e7bdc8-4437-4a6a-aa25-03cdc07a2e6d.png)
 
 3. Wait for the Logic App flow to finish. 
 
+![image](https://user-images.githubusercontent.com/88718044/156182974-0fd6cbb8-8468-4b37-a061-a82f7254ece9.png)
+
+4. The result will be two CSV files, one for the Receipt information, and one for the Line-items.
+![image](https://user-images.githubusercontent.com/88718044/156183944-8b2010b1-fd00-4e84-8e65-74d13d6946df.png)
 
 ## License
 For all licensing information refer to [LICENSE](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/blob/main/LICENSE).
