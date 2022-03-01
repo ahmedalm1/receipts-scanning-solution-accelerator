@@ -38,7 +38,7 @@ There are four, customizable business rules currently supported in this solution
 ### Deployment 
 #### Pre-requisites
 - Azure Subscription
-- Sample Receipts 
+- Sample Receipt 
 
 #### Steps
 ##### Step 1: Setting up the environment
@@ -53,7 +53,7 @@ You can also deploy the required resources using this ARM template [TO-DO]:
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/)
 
-### Step 2: Setting up the Logic App
+##### Step 2: Setting up the Logic App
 1. Create a blank Logic App. 
 
 ![image](https://user-images.githubusercontent.com/88718044/150130109-4f7051fa-f14d-4bcf-ae76-e3832187fa19.png)
@@ -97,6 +97,74 @@ You can also deploy the required resources using this ARM template [TO-DO]:
 11. Create an empty array variable that will hold the line items. Fill in the information and click on New step to proceed.
 
 ![image](https://user-images.githubusercontent.com/88718044/150143477-64df897d-d3d7-4333-80e9-e92d240b82a4.png)
+
+##### Step 3: Setting up the Logic App
+
+##### Step 4: Setting up the Logic App
+1. From the "Control" list of actions, select "For each".
+
+![image](https://user-images.githubusercontent.com/88718044/150143731-8589d3e0-473f-417f-bd72-b4a87f35d975.png)
+
+2. Search for "documentResults" and select it as the loop parameter. Click on Add an action inside the loop to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150144230-09d44f23-2182-48df-bf84-17cb5e0d3437.png)
+
+3. Add another "For each" loop. Search for "items" and select "Items field Items" as the loop parameter. Click on Add an action inside the second loop to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150144798-06fff3f6-459e-4215-acba-bc528f753f4b.png)
+
+4. From the "Data Operations" list of actions, select "Compose".
+
+![image](https://user-images.githubusercontent.com/88718044/150151338-38fb893b-0856-4f43-b2a7-3cd38ce15244.png)
+
+5. Use the following structure as input and replace the placeholders with the corrosponding dynamic values. Click on Add an action inside the second loop to proceed.
+
+```json
+{
+  "item": "<Item field value Name>",
+  "price": "<Item field value Price>",
+  "quantity": "<Item field value Quantity>",
+  "total_price": "<Item field value Total price>"
+}
+```
+
+![image](https://user-images.githubusercontent.com/88718044/150153614-e85d1212-9036-416e-bca5-233301121ce6.png)
+
+6. From the "Variables" list of actions, select "Append to array variable".
+
+![image](https://user-images.githubusercontent.com/88718044/150154440-3c7633ac-7164-4b6b-a9fa-77d653036a55.png)
+
+7. Select the name of the array and choose "Outputs" of "Compose" as the value. Click on New step outside the loops to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150154989-d860eddf-2c88-45e8-a478-fe37fd9914ff.png)
+
+8. From the "Data Operations" list of actions, select "Create CSV table".
+
+![image](https://user-images.githubusercontent.com/88718044/150155475-94a9483a-1bf2-4279-8f15-209e9e337540.png)
+
+9. Fill in the information and click on New step to proceed. 
+
+![image](https://user-images.githubusercontent.com/88718044/150155592-5442ae81-354e-4932-935d-934b218be597.png)
+
+10. From the "Azure Blob Storage" list of actions, select "Create blob".
+
+![image](https://user-images.githubusercontent.com/88718044/150155806-680b0be0-7d22-4684-b4df-daafbccd144b.png)
+
+11. Fill in the information. For "Blob name" use a concat function to append "-line-items.csv" to the file name for the generated CSV file. For "Blob content", use "Outputs" of the "Create CSV table" action. Save your Logic App to proceed.
+
+![image](https://user-images.githubusercontent.com/88718044/150156330-7ddb5b02-4eb2-4d5c-a917-3c779c17e706.png)
+
+##### Step 5: Testing the Logic App
+1. From "Run Trigger", click on "Run".
+
+![image](https://user-images.githubusercontent.com/88718044/150158782-5decf1eb-52d7-4b0a-b424-705f6263316f.png)
+
+2. Upload the sample receipt "Receipt.png" to the container in the storage account.
+
+![Receipt](https://user-images.githubusercontent.com/88718044/150165816-85e7bdc8-4437-4a6a-aa25-03cdc07a2e6d.png)
+
+3. Wait for the Logic App flow to finish. 
+
 
 ## License
 For all licensing information refer to [LICENSE](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/blob/main/LICENSE).
