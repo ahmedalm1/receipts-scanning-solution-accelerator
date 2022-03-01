@@ -117,6 +117,7 @@ Receipt information
 "total_spent": "<Total field Total>"
 "total_confidence": "<Total field Confidence>"
 ```
+
 ![image](https://user-images.githubusercontent.com/88718044/156180084-9daa1a52-bb02-46c9-b1f7-8dd34301f0f0.png)
 
 Business rules
@@ -126,6 +127,7 @@ Business rules
 "reward_points": "<MUL total BY conversion_rate>"
 "accuracy_flag": "<IF confidence_score LESS THAN threshold THEN true ELSE false>"
 ```
+
 ![image](https://user-images.githubusercontent.com/88718044/156180230-fcb5bf8f-f92e-4e28-933d-bf86f7474cd6.png)
 
 4. From the "Azure Blob Storage" list of actions, select "Create blob".
@@ -137,23 +139,27 @@ Business rules
 ![image](https://user-images.githubusercontent.com/88718044/150156330-7ddb5b02-4eb2-4d5c-a917-3c779c17e706.png)
 
 ##### Step 4: Setting up the Logic App - Line-items Information
-1. From the "Control" list of actions, select "For each".
+1. Select "Add a parallel branch" after the "Initialize variable" action.
+
+![image](https://user-images.githubusercontent.com/88718044/156184503-58b7b930-2151-4f46-9820-fc6cab70d4a2.png)
+
+2. From the "Control" list of actions, select "For each".
 
 ![image](https://user-images.githubusercontent.com/88718044/150143731-8589d3e0-473f-417f-bd72-b4a87f35d975.png)
 
-2. Search for "documentResults" and select it as the loop parameter. Click on Add an action inside the loop to proceed.
+3. Search for "documentResults" and select it as the loop parameter. Click on Add an action inside the loop to proceed.
 
 ![image](https://user-images.githubusercontent.com/88718044/150144230-09d44f23-2182-48df-bf84-17cb5e0d3437.png)
 
-3. Add another "For each" loop. Search for "items" and select "Items field Items" as the loop parameter. Click on Add an action inside the second loop to proceed.
+4. Add another "For each" loop. Search for "items" and select "Items field Items" as the loop parameter. Click on Add an action inside the second loop to proceed.
 
 ![image](https://user-images.githubusercontent.com/88718044/150144798-06fff3f6-459e-4215-acba-bc528f753f4b.png)
 
-4. From the "Data Operations" list of actions, select "Compose".
+5. From the "Data Operations" list of actions, select "Compose".
 
 ![image](https://user-images.githubusercontent.com/88718044/150151338-38fb893b-0856-4f43-b2a7-3cd38ce15244.png)
 
-5. Use the following structure as input and replace the placeholders with the corrosponding dynamic values. Click on Add an action inside the second loop to proceed.
+6. Use the following structure as input and replace the placeholders with the corrosponding dynamic values. Click on Add an action inside the second loop to proceed.
 
 ```json
 {
@@ -166,27 +172,27 @@ Business rules
 
 ![image](https://user-images.githubusercontent.com/88718044/150153614-e85d1212-9036-416e-bca5-233301121ce6.png)
 
-6. From the "Variables" list of actions, select "Append to array variable".
+7. From the "Variables" list of actions, select "Append to array variable".
 
 ![image](https://user-images.githubusercontent.com/88718044/150154440-3c7633ac-7164-4b6b-a9fa-77d653036a55.png)
 
-7. Select the name of the array and choose "Outputs" of "Compose" as the value. Click on New step outside the loops to proceed.
+8. Select the name of the array and choose "Outputs" of "Compose" as the value. Click on New step outside the loops to proceed.
 
 ![image](https://user-images.githubusercontent.com/88718044/150154989-d860eddf-2c88-45e8-a478-fe37fd9914ff.png)
 
-8. From the "Data Operations" list of actions, select "Create CSV table".
+9. From the "Data Operations" list of actions, select "Create CSV table".
 
 ![image](https://user-images.githubusercontent.com/88718044/150155475-94a9483a-1bf2-4279-8f15-209e9e337540.png)
 
-9. Fill in the information and click on New step to proceed. 
+10. Fill in the information and click on New step to proceed. 
 
 ![image](https://user-images.githubusercontent.com/88718044/150155592-5442ae81-354e-4932-935d-934b218be597.png)
 
-10. From the "Azure Blob Storage" list of actions, select "Create blob".
+11. From the "Azure Blob Storage" list of actions, select "Create blob".
 
 ![image](https://user-images.githubusercontent.com/88718044/150155806-680b0be0-7d22-4684-b4df-daafbccd144b.png)
 
-11. Fill in the information. For "Blob name" use a concat function to append "-items.csv" to the file name for the generated CSV file. For "Blob content", use "Outputs" of the "Create CSV table" action. Save your Logic App to proceed.
+12. Fill in the information. For "Blob name" use a concat function to append "-items.csv" to the file name for the generated CSV file. For "Blob content", use "Outputs" of the "Create CSV table" action. Save your Logic App to proceed.
 
 ![image](https://user-images.githubusercontent.com/88718044/150156330-7ddb5b02-4eb2-4d5c-a917-3c779c17e706.png)
 
@@ -204,6 +210,7 @@ Business rules
 ![image](https://user-images.githubusercontent.com/88718044/156182974-0fd6cbb8-8468-4b37-a061-a82f7254ece9.png)
 
 4. The result will be two CSV files, one for the Receipt information, and one for the Line-items.
+
 ![image](https://user-images.githubusercontent.com/88718044/156183944-8b2010b1-fd00-4e84-8e65-74d13d6946df.png)
 
 ## License
