@@ -144,9 +144,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat(parameters('storageAccounts_receiptsscanningstr_name'), '/default')]",
+            "name": "[concat(variables('storageAccounts_receiptsscanningstr_name'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_receiptsscanningstr_name'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccounts_receiptsscanningstr_name'))]"
             ],
             "sku": {
                 "name": "[parameters('storageAccountType')]"
@@ -175,9 +175,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat(parameters('storageAccounts_receiptsscanningstr_name'), '/default')]",
+            "name": "[concat(variables('storageAccounts_receiptsscanningstr_name'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_receiptsscanningstr_name'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccounts_receiptsscanningstr_name'))]"
             ],
             "sku": {
                 "name": "[parameters('storageAccountType')]"
@@ -192,9 +192,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/queueServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat(parameters('storageAccounts_receiptsscanningstr_name'), '/default')]",
+            "name": "[concat(variables('storageAccounts_receiptsscanningstr_name'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_receiptsscanningstr_name'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccounts_receiptsscanningstr_name'))]"
             ],
             "properties": {
                 "cors": {
@@ -205,9 +205,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/tableServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat(parameters('storageAccounts_receiptsscanningstr_name'), '/default')]",
+            "name": "[concat(variables('storageAccounts_receiptsscanningstr_name'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_receiptsscanningstr_name'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccounts_receiptsscanningstr_name'))]"
             ],
             "properties": {
                 "cors": {
